@@ -30,6 +30,16 @@ public class MaquinaExpendedoraMejorada {
     public int getPrecioBillete() {
         return precioBillete;
     }
+    
+    /**
+     * Vacia toda la maquina
+     */
+    public int vaciarDineroDeLaMaquina() {
+        int varible1 = balanceClienteActual + totalDineroAcumulado;
+        balanceClienteActual = 0;
+        totalDineroAcumulado = 0;
+        return varible1;
+    }
 
     /**
      * Devuelve la cantidad de dinero que el cliente actual lleva introducida
