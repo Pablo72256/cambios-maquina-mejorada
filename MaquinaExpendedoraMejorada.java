@@ -22,6 +22,7 @@ public class MaquinaExpendedoraMejorada {
         precioBillete = precioDelBillete;
         balanceClienteActual = 0;
         totalDineroAcumulado = 0;
+        cantidadDeBilletes = 0;
         estacionOrigen = origen;
         estacionDestino = destino;
     }
