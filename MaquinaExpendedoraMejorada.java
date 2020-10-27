@@ -10,6 +10,8 @@ public class MaquinaExpendedoraMejorada {
     private String estacionOrigen;
     // El destino del billete
     private String estacionDestino;
+    // Variable para saber el tipo de maquina
+    private String tipoDeMaquina;
     // Cantidad de billetes
     private int cantidadDeBilletes;
 
@@ -18,15 +20,16 @@ public class MaquinaExpendedoraMejorada {
      * precio del billete y el origen y destino dados. Se asume que el precio
      * del billete que se recibe es mayor que 0.
      */
-    public MaquinaExpendedoraMejorada(int precioDelBillete, String origen, String destino) {
+    public MaquinaExpendedoraMejorada(int precioDelBillete, String origen, String destino, String tipoDeLaMaquina) {
         precioBillete = precioDelBillete;
         balanceClienteActual = 0;
         totalDineroAcumulado = 0;
         cantidadDeBilletes = 0;
+        tipoDeMaquina = tipoDeLaMaquina;
         estacionOrigen = origen;
         estacionDestino = destino;
     }
-
+    
     /**
      * Devuelve el precio del billete
      */
@@ -92,7 +95,9 @@ public class MaquinaExpendedoraMejorada {
      */
     public void imprimirBillete() {
         int cantidadDeDineroQueFalta = precioBillete - balanceClienteActual ;
-        if (cantidadDeDineroQueFalta <= 0) {        
+        if (tipoDeMaquina == "normal"){
+            
+            if (cantidadDeDineroQueFalta <= 0) {        
             // Simula la impresion de un billete
             System.out.println("##################");
             System.out.println("# Billete de tren:");
@@ -107,11 +112,39 @@ public class MaquinaExpendedoraMejorada {
             balanceClienteActual = balanceClienteActual - precioBillete;
             //Suma en 1 la cantidad de billetes vendidos
             cantidadDeBilletes = cantidadDeBilletes + 1;
-        }
-        else {
-            System.out.println("Necesitas introducir " + cantidadDeDineroQueFalta + " euros mas!");
+            
+            }
+            else {
+                System.out.println("Necesitas introducir " + cantidadDeDineroQueFalta + " euros mas!");
                     
-        }            
+            }
+        }
+        else if (tipoDeMaquina == "premio"){
+                if (cantidadDeDineroQueFalta <= 0) {        
+                // Simula la impresion de un billete
+                System.out.println("##################");
+                System.out.println("# Billete de tren:");
+                System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
+                System.out.println("# " + precioBillete + " euros.");
+                System.out.println("##################");
+                System.out.println("Enhorabuena, ha ganado un descuento del 10 por ciento del coste del billete para compras en el comercio que tu elijas");
+                System.out.println("##################");
+                System.out.println();         
+        
+                // Actualiza el total de dinero acumulado en la maquina
+                totalDineroAcumulado = totalDineroAcumulado + precioBillete;
+                // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
+                balanceClienteActual = balanceClienteActual - precioBillete;
+                //Suma en 1 la cantidad de billetes vendidos
+                cantidadDeBilletes = cantidadDeBilletes + 1;
+                
+                }
+                else {
+                    System.out.println("Necesitas introducir " + cantidadDeDineroQueFalta + " euros mas!");
+                    
+                }
+        }
+                    
     }
     
     /**
