@@ -109,13 +109,14 @@ public class MaquinaExpendedoraMejorada {
             System.out.println("Cantidad maxima de billetes cubierta");
         }
         else {
+            int premioCadaTres = (cantidadDeBilletes+1) % 3;
             if (cantidadDeDineroQueFalta <= 0) {        
                 // Simula la impresion de un billete
                 System.out.println("##################");
                 System.out.println("# Billete de tren:");
                 System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
                 System.out.println("# " + precioBillete + " euros.");
-                if (tipoDeMaquina == "premio"){
+                if (tipoDeMaquina == "premio" && premioCadaTres ==0){
                     System.out.println("Enhorabuena, ha ganado un descuento del 10 por ciento del coste del billete para compras en el comercio que tu elijas");
                 }
                 System.out.println("##################");
